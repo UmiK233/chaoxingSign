@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OpenCV.js</title>
+        <style type="text/css">
+            .wrap-image {
+                display: flex;
+                flex-direction: row;
+                margin-top: 10px;
+            }
+            .wrap-image img,
+            .wrap-image canvas {
+                width: 300px;
+                margin-right: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h3 id="status">Loading the Opencv ...</h3>
+        <input type="file" id="fileInput-gray"/>
+        <div class="wrap-image">
+            <img id="fuck" src="https://captcha-b.chaoxing.com/slide/big/AE5ED1C94FF6AD0F043D22E0F708559F.jpg" />
+            <canvas id="canvasOutput-gray"></canvas>
+        </div>
+        <script type="text/javascript">
+
+            //图片灰度处理效果：
+            let imgElement = document.getElementById('fuck');
+            let inputElement = document.getElementById('fileInput-gray');
+
+            inputElement.onchange = function() {
+              imgElement.src = URL.createObjectURL(event.target.files[0]);
+            }
+
+            imgElement.onload =function() {
+                var imgSrcElement=document.getElementById('fuck');
+                console.log(typeof imgSrcElement)
+                let src = cv.imread(imgSrcElement);
+                console.log(src)
+                let dst = new cv.Mat();
+                cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY, 0);
+                cv.imshow('canvasOutput-gray', dst);
+                src.delete(); dst.delete();
+            };
+            function onOpenCvReady() {
+                document.getElementById('status').remove();
+            }
+        </script>
+        <script async src="./opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+# 忽略所有 .log 文件
+*.log
+ 
+# 忽略 node_modules 目录
+node_modules/
+ 
+# 忽略 build 目录及其内容
+build/
+ 
+# 忽略 IDE 配置文件（如 VS Code）
+.vscode/
+.idea/
+ 
+# 忽略系统文件（Mac/Linux）
+.DS_Store
+Thumbs.db
+ 
+# 忽略特定环境变量文件
+.env
+.env.local
+.env.*
+ 
+# 忽略所有 .tmp 文件，但保留 important.tmp
+*.tmp
+!important.tmp
+ 
+# 忽略所有子目录中的 logs 文件夹
+**/logs/
